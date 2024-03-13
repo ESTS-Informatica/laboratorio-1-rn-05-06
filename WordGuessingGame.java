@@ -93,4 +93,10 @@ public class WordGuessingGame
     private void showResult(){
         System.out.println("A palavra foi adivinhada em " + numberOfTries + ".");
     }
+    
+    public void reset(){
+        hiddenWord = wordGen.generateWord();
+        initializeGuessedWord();
+        numberOfTries = 0;
+    }
 }
