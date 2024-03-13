@@ -11,12 +11,15 @@ public class WordGuessingGame
     private String guessedWord;
     private int numberOfTries;
     private InputReader reader;
+    private WordGenerator wordGen;
     
     public WordGuessingGame(){
         hiddenWord = "abc";
-        guessedWord = "___";
         numberOfTries = 0;
         reader = new InputReader();
+        wordGen = new WordGenerator();
+        hiddenWord = wordGen.generateWord();
+        initializeGuessedWord();
     }
     
     public String getHiddenWord(){
@@ -33,6 +36,13 @@ public class WordGuessingGame
     
     public void showGuessedWord(){
         System.out.println(guessedWord);
+    }
+    
+    public void initializeGuessedWord(){
+        guessedWord = "";
+        while(guessedWord.length() != hiddenWord.length()){
+            guessedWord = guessedWord.concat("_");
+        }
     }
     
     public void play(){
@@ -56,7 +66,7 @@ public class WordGuessingGame
     }
     
     private boolean guess(char letra){
-        char[] guessedWordArray = new char[hiddenWord.length()];
+        char[] guessedWordArray = new char[guessedWord.length()];
         for(int c = 0; c < guessedWordArray.length; c++){
             guessedWordArray[c] = guessedWord.charAt(c);
         }
